@@ -10,6 +10,7 @@ return function(core, info, ...)
   info.min = info.min or math.min(info.value, 0)
   info.max = info.max or math.max(info.value, 1)
   info.step = info.step or (info.max - info.min) / 10
+  info.discrete = not not info.discrete
   local fraction = (info.value - info.min) / (info.max - info.min)
   local value_changed = false
 
@@ -23,13 +24,23 @@ return function(core, info, ...)
     else
       fraction = math.min(1, math.max(0, (mx - x) / w))
     end
+
     local v = fraction * (info.max - info.min) + info.min
-    if v ~= info.value then
+    local diff = math.floor(math.abs(v - info.value) + 0.45) * info.step
+
+    if ((info.discrete and diff > 0) or v ~= info.value) then
+      -- Discrete steps
+      if info.discrete then
+        v = info.value + (v < info.value and -diff or diff)
+        fraction = (v - info.min) / (info.max - info.min)
+      end
+
       info.value = v
       value_changed = true
     end
 
     -- keyboard update
+    -- XXX: not currently working. Active element seems to be incorrect
     local key_up = opt.vertical and 'up' or 'right'
     local key_down = opt.vertical and 'down' or 'left'
     if core:getPressedKey() == key_up then
