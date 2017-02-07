@@ -4,7 +4,7 @@ local BASE = (...):match('(.-)[^%.]+$')
 
 return function(core, checkbox, ...)
   local opt, x,y,w,h = core.getOptionsAndSize(...)
-  opt.id = opt.id or checkbox
+  opt.id   = opt.id or checkbox
   opt.font = opt.font or love.graphics.getFont()
 
   w = w or (opt.font:getWidth(checkbox.text) + opt.font:getHeight() + 4)
@@ -18,10 +18,10 @@ return function(core, checkbox, ...)
   core:registerDraw(opt.draw or core.theme.Checkbox, checkbox, opt, x,y,w,h)
 
   return {
-    id = opt.id,
-    hit = hit,
+    id      = opt.id,
+    hit     = hit,
     hovered = core:isHovered(opt.id),
     entered = core:isHovered(opt.id) and not core:wasHovered(opt.id),
-    left = not core:isHovered(opt.id) and core:wasHovered(opt.id)
+    left    = not core:isHovered(opt.id) and core:wasHovered(opt.id)
   }
 end

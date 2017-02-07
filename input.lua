@@ -10,7 +10,7 @@ end
 
 return function(core, input, ...)
   local opt, x,y,w,h = core.getOptionsAndSize(...)
-  opt.id = opt.id or input
+  opt.id   = opt.id or input
   opt.font = opt.font or love.graphics.getFont()
 
   local text_width = opt.font:getWidth(input.text)
@@ -100,11 +100,11 @@ end
 core:registerDraw(opt.draw or core.theme.Input, input, opt, x,y,w,h)
 
 return {
-  id = opt.id,
-  hit = core:mouseReleasedOn(opt.id),
+  id        = opt.id,
+  hit       = core:mouseReleasedOn(opt.id),
   submitted = core:keyPressedOn(opt.id, "return"),
-  hovered = core:isHovered(opt.id),
-  entered = core:isHovered(opt.id) and not core:wasHovered(opt.id),
-  left = not core:isHovered(opt.id) and core:wasHovered(opt.id)
+  hovered   = core:isHovered(opt.id),
+  entered   = core:isHovered(opt.id) and not core:wasHovered(opt.id),
+  left      = not core:isHovered(opt.id) and core:wasHovered(opt.id)
 }
 end

@@ -6,14 +6,14 @@ function Layout.new(x,y,padx,pady)
 end
 
 function Layout:reset(x,y, padx,pady)
-  self._x = x or 0
-  self._y = y or 0
-  self._padx = padx or 0
-  self._pady = pady or self._padx
-  self._w = nil
-  self._h = nil
-  self._widths = {}
-  self._heights = {}
+  self._x           = x or 0
+  self._y           = y or 0
+  self._padx        = padx or 0
+  self._pady        = pady or self._padx
+  self._w           = nil
+  self._h           = nil
+  self._widths      = {}
+  self._heights     = {}
   self._isFirstCell = true
 
   return self

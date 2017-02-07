@@ -44,11 +44,11 @@ return function(core, info, ...)
   core:registerDraw(opt.draw or core.theme.Slider, fraction, opt, x,y,w,h)
 
   return {
-    id = opt.id,
-    hit = core:mouseReleasedOn(opt.id),
+    id      = opt.id,
+    hit     = core:mouseReleasedOn(opt.id),
     changed = value_changed,
     hovered = core:isHovered(opt.id),
     entered = core:isHovered(opt.id) and not core:wasHovered(opt.id),
-    left = not core:isHovered(opt.id) and core:wasHovered(opt.id)
+    left    = not core:isHovered(opt.id) and core:wasHovered(opt.id)
   }
 end
